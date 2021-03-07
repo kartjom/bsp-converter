@@ -3,3 +3,6 @@
 Converts .bsp, .d3dbsp files to .obj wavefront format and exports textures used by map from the game files
 
 Generates config.json for setting up game directories
+
+Example result:
+![alt text](https://i.imgur.com/jsxSMk3.pngg)
