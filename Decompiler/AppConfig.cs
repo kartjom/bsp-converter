@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Text.Json;
+using System.Reflection;
 
 namespace Decompiler
 {
@@ -27,6 +28,8 @@ namespace Decompiler
             };
 
             string jsonString = JsonSerializer.Serialize(configData, options).Replace("null", "\"game_path_here\"");
+
+            //string rootDir = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
             File.WriteAllText("config.json", jsonString);
         }
 
@@ -37,7 +40,7 @@ namespace Decompiler
                 return JsonSerializer.Deserialize<ConfigData>(jsonFileContent);
             }
             catch(FileNotFoundException) {
-                Console.WriteLine("INFO: config.json created. Set game paths to export textures.");
+                Console.WriteLine("INFO: config.json created. Set game path to export textures.");
 
                 AppConfig.Create();
                 return new ConfigData();

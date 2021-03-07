@@ -34,15 +34,19 @@ namespace Decompiler
             OutputFolder = Path.Combine(FileDirectory, FileName);
 
             string cod2Dir = AppConfig.Settings().CoD2RootDirectory;
-            if (Directory.Exists(Path.Combine(cod2Dir, "main")))
+
+            if (cod2Dir != null)
             {
-                GameDirectoryValid = true;
-                Console.WriteLine($"INFO: Game directory found: {cod2Dir}");
-            }
-            else
-            {
-                GameDirectoryValid = false;
-                Console.WriteLine("WARNING: CoD 2 directory not found. No textures will be exported (see config.json)");
+                if (Directory.Exists(Path.Combine(cod2Dir, "main")))
+                {
+                    GameDirectoryValid = true;
+                    Console.WriteLine($"INFO: Game directory found: {cod2Dir}");
+                }
+                else
+                {
+                    GameDirectoryValid = false;
+                    Console.WriteLine("WARNING: CoD 2 directory not found. No textures will be exported (see config.json)");
+                }
             }
         }
 

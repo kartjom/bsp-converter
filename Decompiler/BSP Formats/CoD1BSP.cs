@@ -36,18 +36,22 @@ namespace Decompiler
             OutputFolder = Path.Combine(FileDirectory, FileName);
 
             string cod1Dir = AppConfig.Settings().CoD1RootDirectory;
-            if (Directory.Exists( Path.Combine(cod1Dir, "main") ))
-            {
-                GameDirectoryValid = true;
-                GetGameArchives();
-                FindAndParseShaderFiles();
 
-                Console.WriteLine($"INFO: Game directory found: {cod1Dir}");
-            }
-            else
+            if (cod1Dir != null)
             {
-                GameDirectoryValid = false;
-                Console.WriteLine("WARNING: CoD 1 directory not found. No textures will be exported (see config.json)");
+                if (Directory.Exists(Path.Combine(cod1Dir, "main")))
+                {
+                    GameDirectoryValid = true;
+                    GetGameArchives();
+                    FindAndParseShaderFiles();
+
+                    Console.WriteLine($"INFO: Game directory found: {cod1Dir}");
+                }
+                else
+                {
+                    GameDirectoryValid = false;
+                    Console.WriteLine("WARNING: CoD 1 directory not found. No textures will be exported (see config.json)");
+                }
             }
         }
 
