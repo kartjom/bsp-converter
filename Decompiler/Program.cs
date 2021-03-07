@@ -9,7 +9,6 @@ namespace Decompiler
         static void Main(string[] args)
         {
             string path = null;
-            path = @"C:\Users\Jakub\Desktop\mapamarzen.bsp"; /* For testing only */
 
             try {
                 path = args[0];
@@ -23,8 +22,8 @@ namespace Decompiler
                 Console.WriteLine("ERROR: Drag and drop file onto executable to decompile");
             }
             finally {
-                //Console.ReadKey();
-                //Environment.Exit(1);
+                Console.ReadKey();
+                Environment.Exit(1);
             }
 
             Header header = BinLib.OpenReadCloseBinary<Header>(path);
