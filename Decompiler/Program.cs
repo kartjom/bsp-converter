@@ -22,8 +22,11 @@ namespace Decompiler
                 Console.WriteLine("ERROR: Drag and drop file onto executable to decompile");
             }
             finally {
-                Console.ReadKey();
-                Environment.Exit(1);
+                if (args.Length <= 0)
+                {
+                    Console.ReadKey();
+                    Environment.Exit(1);
+                }
             }
 
             Header header = BinLib.OpenReadCloseBinary<Header>(path);
