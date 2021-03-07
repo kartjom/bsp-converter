@@ -5,4 +5,9 @@ Converts .bsp, .d3dbsp files to .obj wavefront format and exports textures used 
 Generates config.json for setting up game directories
 
 Example result:
-![alt text](https://i.imgur.com/jsxSMk3.pngg)
+
+![alt text](https://i.imgur.com/cKVMi5R.png)
+
+![alt text](https://i.imgur.com/cam399i.png)
+
+![alt text](https://i.imgur.com/00Dox9W.png)
