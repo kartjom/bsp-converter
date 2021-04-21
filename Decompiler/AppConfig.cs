@@ -1,7 +1,6 @@
 ﻿using System;
 using System.IO;
 using System.Text.Json;
-using System.Reflection;
 
 namespace Decompiler
 {
@@ -15,6 +14,8 @@ namespace Decompiler
 
     public static class AppConfig
     {
+        public static string Location = Path.Combine(Project.RootLocation, "config.json");
+
         public static void Create()
         {
             var options = new JsonSerializerOptions()
@@ -29,14 +30,13 @@ namespace Decompiler
 
             string jsonString = JsonSerializer.Serialize(configData, options).Replace("null", "\"game_path_here\"");
 
-            //string rootDir = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
-            File.WriteAllText("config.json", jsonString);
+            File.WriteAllText(AppConfig.Location, jsonString);
         }
 
         public static ConfigData Settings()
         {
             try {
-                string jsonFileContent = File.ReadAllText("config.json").Replace(@"\", @"/");
+                string jsonFileContent = File.ReadAllText(AppConfig.Location).Replace(@"\", @"/");
                 return JsonSerializer.Deserialize<ConfigData>(jsonFileContent);
             }
             catch(FileNotFoundException) {

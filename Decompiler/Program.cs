@@ -4,6 +4,12 @@ using BinaryFileReader;
 
 namespace Decompiler
 {
+    static class Project
+    {
+        // Path to executable's folder
+        public static readonly string RootLocation = Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly().Location);
+    }
+
     class Program
     {
         static void Main(string[] args)
