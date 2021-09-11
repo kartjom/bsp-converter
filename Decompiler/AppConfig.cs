@@ -1,11 +1,21 @@
 ﻿using System;
 using System.IO;
 using System.Text.Json;
+using Microsoft.Win32;
 
 namespace Decompiler
 {
     public class ConfigData
     {
+        public ConfigData()
+        {
+            string CoD1RegKey = @"HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Activision\Call of Duty";
+            CoD1RootDirectory = (string)Registry.GetValue(CoD1RegKey, "InstallPath", null);
+            
+            string CoD2RegKey = @"HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Activision\Call of Duty 2";
+            CoD2RootDirectory = (string)Registry.GetValue(CoD2RegKey, "InstallPath", null);
+        }
+
         public string CoD1RootDirectory { get; init; }
         public string CoD2RootDirectory { get; init; }
         public string MoHAARootDirectory { get; init; }
