@@ -7,13 +7,14 @@ namespace Decompiler
     static class Project
     {
         // Path to executable's folder
-        public static readonly string RootLocation = Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly().Location);
+        public static readonly string RootLocation = AppDomain.CurrentDomain.BaseDirectory;
     }
 
     class Program
     {
         static void Main(string[] args)
         {
+            Console.WriteLine(Project.RootLocation);
             string path = null;
 
             try {
