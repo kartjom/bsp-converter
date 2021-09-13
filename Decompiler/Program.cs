@@ -14,7 +14,6 @@ namespace Decompiler
     {
         static void Main(string[] args)
         {
-            Console.WriteLine(Project.RootLocation);
             string path = null;
 
             try {
