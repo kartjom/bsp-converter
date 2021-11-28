@@ -41,11 +41,6 @@ namespace Decompiler
                 Directory.CreateDirectory(directory);
 
                 foundTexture.ExtractToFile(exportPath);
-
-                if (exportPath.Contains("holland/ceilings"))
-                {
-                    string s = "";
-                }
             }
         }
     }
