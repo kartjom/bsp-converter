@@ -170,7 +170,7 @@ namespace Decompiler
                     {
                         if (!entry.FullName.StartsWith(@"textures/")) continue;
                         if (entry.FullName.EndsWith(@"/")) continue;
-                        TexturesDictionary[entry.FullName] = file.ToLower();
+                        TexturesDictionary[entry.FullName.ToLower()] = file.ToLower();
                     }
                 }
             }

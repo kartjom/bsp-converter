@@ -20,11 +20,32 @@ namespace Decompiler
 
         protected void ZipEntryExport(string archivePath, string entryName, string exportPath)
         {
-            Directory.CreateDirectory(Path.GetDirectoryName(exportPath));
             using (ZipArchive zip = ZipFile.OpenRead(archivePath))
             {
+                // We have to do it the ugly way
+                string originalTextureName = "_invalid_";
+                foreach (ZipArchiveEntry entry in zip.Entries)
+                {
+                    string entryLower = entry.FullName.ToLower();
+                    if (entryLower == entryName)
+                    {
+                        originalTextureName = entry.FullName;
+                    }
+                }
+
                 if (File.Exists(exportPath)) File.Delete(exportPath);
-                zip.GetEntry(entryName).ExtractToFile(exportPath);
+
+                ZipArchiveEntry foundTexture = zip.GetEntry(originalTextureName);
+
+                string directory = Path.GetDirectoryName(exportPath);
+                Directory.CreateDirectory(directory);
+
+                foundTexture.ExtractToFile(exportPath);
+
+                if (exportPath.Contains("holland/ceilings"))
+                {
+                    string s = "";
+                }
             }
         }
     }
