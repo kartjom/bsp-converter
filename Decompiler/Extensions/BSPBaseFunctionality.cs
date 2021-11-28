@@ -30,6 +30,7 @@ namespace Decompiler
                     if (entryLower == entryName)
                     {
                         originalTextureName = entry.FullName;
+                        break;
                     }
                 }
 
