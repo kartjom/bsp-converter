@@ -101,7 +101,7 @@ namespace Decompiler
                     texName = Shaders[texName];
                 }
 
-                Textures[i].Name = texName.ToCharArray();
+                Textures[i].Name = texName.ToLower().ToCharArray();
             }
         }
 
@@ -153,7 +153,7 @@ namespace Decompiler
 
                     if (textureName != null)
                     {
-                        Shaders[shaderName] = textureName.Trim();
+                        Shaders[shaderName] = textureName.Trim().ToLower();
                     }
                 }
             }
@@ -170,7 +170,7 @@ namespace Decompiler
                     {
                         if (!entry.FullName.StartsWith(@"textures/")) continue;
                         if (entry.FullName.EndsWith(@"/")) continue;
-                        TexturesDictionary[entry.FullName] = file;
+                        TexturesDictionary[entry.FullName] = file.ToLower();
                     }
                 }
             }
@@ -194,7 +194,7 @@ namespace Decompiler
             {
                 try
                 {
-                    string texName = texture.Name.String();
+                    string texName = texture.Name.String().ToLower();
 
                     string filePathWithExtension = $"{texName}{TexturesExtensions[texName]}";
                     string pk3File = TexturesDictionary[filePathWithExtension];
@@ -204,7 +204,7 @@ namespace Decompiler
 
                     Console.WriteLine($"({matIndex++}/{Textures.Length}) {filePathWithExtension}");
                 }
-                catch (Exception)
+                catch (Exception e)
                 {
                     Console.WriteLine($"({matIndex++}/{Textures.Length}) ERROR: Couldn't find {texture.Name.String()}");
                 }
@@ -218,7 +218,7 @@ namespace Decompiler
                 foreach (CoDMaterial tex in Textures)
                 {
                     /* Example tex.Name:     textures/common/clip_nosight_metal (no extension)*/
-                    string texName = tex.Name.String();
+                    string texName = tex.Name.String().ToLower();
                     string filePathWithExtension;
 
                     try
